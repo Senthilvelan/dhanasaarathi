@@ -39,6 +39,7 @@ class OtpScreen extends StatelessWidget {
           // OTP Input Field
 
           Pinput(
+            focusNode: logic.focusNode,
             length: 6,
             controller: textOtpController,
             defaultPinTheme: PinTheme(

@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:dhansaarathi/app/utils/utilities.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class OtpController extends GetxController {
-  // String phoneNumber = "";
-  // dynamic profileData = Get.arguments;
+  FocusNode focusNode = FocusNode();
+
   final String phoneNumber = Get.arguments ?? '';
 
   final supabase = Supabase.instance.client;
@@ -14,13 +16,38 @@ class OtpController extends GetxController {
   var isLoading = false.obs;
   var maskedPhoneNumber = ''.obs;
   var resendEnabled = false.obs;
-  var resendTimer = 30.obs;
+  var resendTimer = 60.obs;
   Timer? _timer;
 
-  // Start countdown for resend button
+  @override
+  void onInit() {
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      try {
+        focusNode ??= FocusNode();
+        focusNode.requestFocus();
+        startResendCountdown();
+        maskedPhoneNumber.value = maskPhoneNumber(phoneNumber);
+
+      } catch (e) {
+        if (kDebugMode) print("exception");
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    try {
+      if (focusNode != null) focusNode.dispose();
+    } catch (e) {
+      if (kDebugMode) print("exception");
+    }
+
+    super.onClose();
+  }
+
   void startResendCountdown() {
     resendEnabled.value = false;
-    resendTimer.value = 30;
+    resendTimer.value = 60;
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (resendTimer.value > 0) {
@@ -71,75 +98,8 @@ class OtpController extends GetxController {
     }
   }
 
-  // Mask phone number (e.g., 964*****405)
   String maskPhoneNumber(String phone) {
     if (phone.length < 6) return phone;
     return phone.replaceRange(3, phone.length - 3, '*' * (phone.length - 6));
   }
 }
-
-/*
-class OtpController extends GetxController {
-  final otp = ''.obs;
-  final isProcessing = false.obs;
-  final countdown = 30.obs;
-  final canResend = false.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    startCountdown();
-  }
-
-  void updateOtp(String value) {
-    otp.value = value;
-  }
-
-  void startCountdown() {
-    canResend.value = false;
-    countdown.value = 30;
-    Future.delayed(const Duration(seconds: 1), () {
-      if (countdown.value > 0) {
-        countdown.value--;
-        startCountdown();
-      } else {
-        canResend.value = true;
-      }
-    });
-  }
-
-  void resendOtp() {
-    if (canResend.value) {
-      // Implement resend OTP logic here
-      startCountdown();
-    }
-  }
-
-  void verifyOtp() {
-    if (otp.value.length == 6) {
-      isProcessing.value = true;
-      // Implement OTP verification logic here
-      Future.delayed(const Duration(seconds: 2), () {
-        isProcessing.value = false;
-        // Navigate to next screen on success
-        Get.offAllNamed('/home');
-      });
-    } else {
-      Get.snackbar('Error', 'Please enter a valid OTP');
-    }
-  }
-
-  void test() async {
-    try {
-      final email = "";
-      final password = "";
-      await Supabase.instance.client.auth.signUp(
-        email: email,
-        password: password,
-      );
-    } catch (e) {}
-  }
-
-
-
-} */
