@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../4home/home_screen.dart';
+
 class OtpController extends GetxController {
   FocusNode focusNode = FocusNode();
 
@@ -27,7 +29,6 @@ class OtpController extends GetxController {
         focusNode.requestFocus();
         startResendCountdown();
         maskedPhoneNumber.value = maskPhoneNumber(phoneNumber);
-
       } catch (e) {
         if (kDebugMode) print("exception");
       }
@@ -80,14 +81,14 @@ class OtpController extends GetxController {
     isLoading.value = true;
     try {
       final response = await supabase.auth.verifyOTP(
-        phone: phoneNumber,
+        phone: "91$phoneNumber",
         token: otp,
         type: OtpType.sms,
       );
 
       if (response.session != null) {
         Utilities.showToast('Success', 'Login successful');
-        // Get.offAll(() => HomeScreen());
+        Get.offAll(() => HomeScreen());
       } else {
         Utilities.showToast('Error', 'Invalid OTP');
       }
