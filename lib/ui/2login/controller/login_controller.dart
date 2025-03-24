@@ -1,5 +1,6 @@
 import 'package:dhansaarathi/app/routes/app_pages.dart';
 import 'package:dhansaarathi/app/utils/utilities.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,8 +8,54 @@ import '../../../app/service/supabase_client.dart';
 
 class LoginController extends GetxController {
   TextEditingController phoneController = TextEditingController();
+  FocusNode focusNode = FocusNode();
 
   LoginController() {}
+
+  RxBool isDisabled = false.obs;
+
+  @override
+  void onInit() {
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      try {
+        focusNode ??= FocusNode();
+        focusNode.requestFocus();
+      } catch (e) {
+        if (kDebugMode) print("exception");
+      }
+    });
+
+    phoneController.addListener(() {
+      if (phoneController == null) {
+        return;
+      }
+      if (phoneController.text == null) {
+        return;
+      }
+      if (phoneController.text.trim() == null) {
+        return;
+      }
+
+      if (phoneController.text.trim().length == 10) {
+        isDisabled.value = true;
+      } else {
+        isDisabled.value = false;
+      }
+    });
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    try {
+      if (focusNode != null) focusNode.dispose();
+      if (phoneController != null) phoneController.dispose();
+    } catch (e) {
+      if (kDebugMode) print("exception");
+    }
+
+    super.onClose();
+  }
 
   void proceedToOtp() async {
     if (phoneController == null) {

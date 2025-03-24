@@ -16,7 +16,7 @@ import 'app/routes/app_pages.dart';
 import 'app/utils/my_const.dart';
 import 'app/utils/sizer.dart';
 import 'app/utils_res/color_helper.dart';
-import 'ui/5fundfullscreen/fund_fullsceen.dart';
+import 'ui/1welcome/welcome_screen.dart';
 
 void main() async {
   BindingBase.debugZoneErrorsAreFatal = true;
@@ -118,14 +118,14 @@ class _MyAppState extends State<MySaarathiApp> with WidgetsBindingObserver {
               initialBinding: AppBinding(),
               initialRoute: AppRoutes.screenWelcome,
               navigatorKey: NavigationService.navigatorKey,
-              defaultTransition: Transition.cupertino,
+              defaultTransition: Transition.fadeIn,
               // defaultTransition: Transition.fadeIn,
               transitionDuration: const Duration(milliseconds: 900),
               getPages: AppPages.pages,
               // navigatorObservers: [MyRouteObserver()],
-              // home: WelcomeScreen(),
+              home: WelcomeScreen(),
               //todo
-              home: FundFullScreen(),
+              // home: FundFullScreen(),
 
               theme: ThemeData(
                 dividerColor: Colors.transparent,

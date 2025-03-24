@@ -30,7 +30,7 @@ class LoginOtpBackground extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 54),
+        SizedBox(height: 24),
 
         Text(
           "Welcome Back,\nWe Missed You! 🎉",

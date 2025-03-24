@@ -1,3 +1,4 @@
+import 'package:dhansaarathi/ui/5fundfullscreen/fund_fullsceen.dart';
 import 'package:get/get.dart';
 
 import '../../ui/1welcome/welcome_screen.dart';
@@ -12,24 +13,30 @@ class AppPages {
     GetPage(
       name: AppRoutes.screenWelcome,
       page: () => WelcomeScreen(),
-      transition: Transition.cupertino,
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenLogin,
       page: () => LoginScreen(),
-      transition: Transition.cupertino,
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenOtp,
       page: () => OtpScreen(),
-      transition: Transition.cupertino,
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenHome,
       page: () => HomeScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 900),
+    ),
+    GetPage(
+      name: AppRoutes.screenFullFund,
+      page: () => FundFullScreen(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 900),
     ),

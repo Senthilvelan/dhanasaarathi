@@ -30,6 +30,7 @@ class LoginScreen extends StatelessWidget {
         const SizedBox(height: 12),
 
         TextField(
+          focusNode: controller.focusNode,
           controller: controller.phoneController,
           keyboardType: TextInputType.phone,
           style: const TextStyle(color: Colors.white70),
@@ -47,21 +48,43 @@ class LoginScreen extends StatelessWidget {
 
         const SizedBox(height: 24),
 
-        // Proceed Button
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: controller.proceedToOtp,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: blueMarine,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+        Obx(() => SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: controller.isDisabled.value
+                    ? controller.proceedToOtp
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      controller.isDisabled.value ? blueMarine : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+                child: Text("Proceed",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    )),
               ),
-              padding: const EdgeInsets.symmetric(vertical: 12),
-            ),
-            child: const Text("Proceed", style: TextStyle(fontSize: 16)),
-          ),
-        ),
+            )),
+
+        // Proceed Button
+        // SizedBox(
+        //   width: double.infinity,
+        //   child: ElevatedButton(
+        //     onPressed: controller.proceedToOtp,
+        //     style: ElevatedButton.styleFrom(
+        //       backgroundColor: blueMarine,
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(12),
+        //       ),
+        //       padding: const EdgeInsets.symmetric(vertical: 12),
+        //     ),
+        //     child: const Text("Proceed", style: TextStyle(fontSize: 16)),
+        //   ),
+        // ),
       ],
     );
   }
