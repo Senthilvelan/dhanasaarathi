@@ -22,28 +22,31 @@ class WatchlistScreen extends StatelessWidget {
           // Dynamic Tabs
           Obx(() => SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      List.generate(controller.watchlists.length, (index) {
-                    return GestureDetector(
-                      onTap: () => controller.selectedTab.value = index,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: controller.selectedTab.value == index
-                              ? blueMarine
-                              : Colors.grey[800],
-                          borderRadius: BorderRadius.circular(20),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                  child: Row(
+                    children:
+                        List.generate(controller.watchlists.length, (index) {
+                      return InkWell(
+                        onTap: () => controller.onListTap(index),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          margin: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: controller.selectedTab.value == index
+                                ? blueMarine
+                                : Colors.grey[800],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            controller.watchlists[index],
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
-                        child: Text(
-                          controller.watchlists[index],
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
               )),
           const SizedBox(height: 20),
@@ -89,112 +92,157 @@ class WatchlistScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showAddWatchlistDialog(context),
         backgroundColor: blueMarine,
-        icon: const Icon(Icons.add),
-        label: const Text("Watchlist"),
+        icon: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        label: const Text(
+          "Watchlist",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
 
   getListWatchListItems() {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: controller.watchlist.length,
-      itemBuilder: (context, index) {
-        final item = controller.watchlist[index];
-        return Slidable(
-          key: Key(item.title),
-          endActionPane: ActionPane(
-            motion: const BehindMotion(),
-            children: [
-              SlidableAction(
-                onPressed: (_) => controller.removeItem(index),
-                backgroundColor: Colors.red.shade800,
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: "Delete",
+    return Column(
+      children: [
+        // Search Box
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: TextField(
+            controller: controller.searchController,
+            onChanged: (value) => controller.filterWatchlist(value),
+            style: const TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              hintText: "Search...",
+              hintStyle: const TextStyle(color: Colors.white54),
+              prefixIcon: const Icon(Icons.search, color: Colors.white54),
+              filled: true,
+              fillColor: Colors.grey[900],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
               ),
-            ],
-          ),
-          child: Card(
-            color: Colors.grey[900],
-            margin: const EdgeInsets.only(bottom: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Fund Name and NAV
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          item.title,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
+          ),
+        ),
+
+        // Watchlist Items
+        Expanded(
+            child: Obx(() => ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: controller.watchlist.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.watchlist[index];
+                    return Slidable(
+                      key: Key(item.title),
+                      endActionPane: ActionPane(
+                        motion: const BehindMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (_) => controller.removeItemromUi(index),
+                            backgroundColor: Colors.red.shade800,
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: "Delete",
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          controller.onFundTap(item.title);
+                        },
+                        child: Card(
+                          color: Colors.grey[900],
+                          margin: const EdgeInsets.only(bottom: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Fund Name and NAV
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        item.title,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    Text(
+                                      "NAV ${item.nav}",
+                                      style: const TextStyle(
+                                          color: Colors.white70, fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(height: 4),
+
+                                // Category and 1D Performance
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      item.category,
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 12),
+                                    ),
+                                    Text(
+                                      "1D ${item.oneDay}",
+                                      style: const TextStyle(
+                                          color: Colors.greenAccent,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(height: 12),
+
+                                // Performance Data
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("1Y ${item.oneYear}",
+                                        style: const TextStyle(
+                                            color: Colors.greenAccent,
+                                            fontSize: 12)),
+                                    Text("3Y ${item.threeYear}",
+                                        style: const TextStyle(
+                                            color: Colors.greenAccent,
+                                            fontSize: 12)),
+                                    Text("5Y ${item.fiveYear}",
+                                        style: const TextStyle(
+                                            color: Colors.greenAccent,
+                                            fontSize: 12)),
+                                    Text(
+                                      "Exp. Ratio ${item.expenseRatio}",
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      Text(
-                        "NAV ${item.nav}",
-                        style: const TextStyle(
-                            color: Colors.white70, fontSize: 14),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 4),
-
-                  // Category and 1D Performance
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        item.category,
-                        style: const TextStyle(
-                            color: Colors.white54, fontSize: 12),
-                      ),
-                      Text(
-                        "1D ${item.oneDay}",
-                        style: const TextStyle(
-                            color: Colors.greenAccent, fontSize: 14),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  // Performance Data
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("1Y ${item.oneYear}",
-                          style: const TextStyle(
-                              color: Colors.greenAccent, fontSize: 12)),
-                      Text("3Y ${item.threeYear}",
-                          style: const TextStyle(
-                              color: Colors.greenAccent, fontSize: 12)),
-                      Text("5Y ${item.fiveYear}",
-                          style: const TextStyle(
-                              color: Colors.greenAccent, fontSize: 12)),
-                      Text(
-                        "Exp. Ratio ${item.expenseRatio}",
-                        style: const TextStyle(
-                            color: Colors.white54, fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
+                    );
+                  },
+                ))),
+      ],
     );
   }
 

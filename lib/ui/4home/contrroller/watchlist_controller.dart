@@ -1,8 +1,12 @@
+import 'package:dhansaarathi/app/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../app/models/watchlist_item.dart';
 
 class WatchlistController extends GetxController {
+  var filteredWatchlist = <WatchlistItem>[].obs;
+  TextEditingController searchController = TextEditingController();
   var watchlists = ["all"].obs;
   var selectedTab = 0.obs;
   var items = <String, List<WatchlistItem>>{}.obs;
@@ -39,10 +43,44 @@ class WatchlistController extends GetxController {
     ),
   ].obs;
 
+  void onListTap(int index) {
+    selectedTab.value = index;
+  }
+
+  void onFundTap(String title) {
+    Future.delayed(const Duration(milliseconds: 300), () {
+      Get.toNamed(AppRoutes.screenFullFund,arguments:title);
+    });
+  }
+
   @override
   void onInit() {
     items["all"] = watchlist;
+    filteredWatchlist.assignAll(watchlist);
+
     super.onInit();
+  }
+
+  void filterWatchlist(String query) {
+    if (query.isEmpty) {
+      filteredWatchlist.assignAll(watchlist);
+    } else {
+      filteredWatchlist.assignAll(
+        watchlist
+            .where((item) =>
+                item.title.toLowerCase().contains(query.toLowerCase()))
+            .toList(),
+      );
+    }
+  }
+
+  void removeItem(int index) {
+    watchlist.removeAt(index);
+    filterWatchlist(searchController.text);
+  }
+
+  void removeItemromUi(int index) {
+    watchlist.removeAt(index);
   }
 
   // Add a new watchlist tab
@@ -61,7 +99,5 @@ class WatchlistController extends GetxController {
     update();
   }
 
-  void removeItem(int index) {
-    watchlist.removeAt(index);
-  }
+
 }
