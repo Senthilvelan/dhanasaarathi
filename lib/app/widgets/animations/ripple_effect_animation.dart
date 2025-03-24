@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/**
+ * Not in use
+ * */
 class Ripple extends StatefulWidget {
   final VoidCallback onPressed;
   final Widget child;
+
   const Ripple({
     Key? key,
     required this.child,

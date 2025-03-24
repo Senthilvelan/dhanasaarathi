@@ -4,6 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'network/http_service.dart';
 import 'network/http_service_impl.dart';
 
+/**
+ *
+ *    Singleton class
+ * */
 class App {
   static final App _singleton = App._internal();
 

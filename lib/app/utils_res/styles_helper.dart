@@ -20,31 +20,4 @@ class StylesHelper {
           child: child),
     );
   }
-
-  static customBlackGradientBottomSheet(
-    BuildContext context,
-    child,
-  ) {
-    return showModalBottomSheet<void>(
-        backgroundColor: Colors.black.withOpacity(0),
-        context: context,
-        builder: (BuildContext context) {
-          return Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.only(
-                    left: 24, right: 24, top: 20, bottom: 40),
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromRGBO(0, 0, 0, 0),
-                    Colors.black,
-                  ],
-                )),
-                child: Center(child: child),
-              ));
-        });
-  }
 }

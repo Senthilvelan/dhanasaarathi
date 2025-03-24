@@ -51,9 +51,11 @@ dependencies:
   supabase_flutter: ^2.0.0
 
   #Storage
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  shared_preferences: ^2.2.1
+  #  hive: ^2.2.3
+  #  hive_flutter: ^1.1.0
+  #  shared_preferences: ^2.2.1
+  #using encrypted storage
+  flutter_secure_storage: ^5.0.2
 
   #visualization
   fl_chart: ^0.63.0

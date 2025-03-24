@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../app/utils_res/string_helper.dart';
 import '../../4home/home_screen.dart';
 
 class OtpController extends GetxController {
@@ -88,6 +89,7 @@ class OtpController extends GetxController {
 
       if (response.session != null) {
         Utilities.showToast('Success', 'Login successful');
+        await StringHelper.setLoggedIn("true");
         Get.offAll(() => HomeScreen());
       } else {
         Utilities.showToast('Error', 'Invalid OTP');

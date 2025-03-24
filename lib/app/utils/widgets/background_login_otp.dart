@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../../utils_res/color_helper.dart';
 import 'background_main.dart';
 
+
+/**
+ * common bg for login and otp pages, (reusing)
+ * */
 class LoginOtpBackground extends StatelessWidget {
   const LoginOtpBackground({Key? key, required this.child}) : super(key: key);
 

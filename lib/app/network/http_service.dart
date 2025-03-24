@@ -15,14 +15,6 @@ abstract class HttpService {
   Future<Response> postRequestNoBase(String url,
       {dynamic postData, dynamic headers, needWait = false});
 
-  // Future<Response> putRequest(String url,
-  //     {dynamic putData, dynamic headers, needWait = false});
-  //
-  // Future<Response> patchRequest(String url,
-  //     {dynamic putData, dynamic headers, needWait = false});
-  //
-  // Future<Response> deleteRequest(String url, {bool needWait = false});
-
   Future<void> logOutRequest();
 
   Future<String?> onlyRefreshToken();

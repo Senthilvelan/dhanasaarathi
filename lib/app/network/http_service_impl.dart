@@ -9,22 +9,28 @@ import 'package:synchronized/synchronized.dart' as lockSync;
 
 import '../app.dart';
 import '../utils_res/snackbar_helper.dart';
-import '../utils_res/string_helper.dart';
 import 'http_service.dart';
 
+/**
+ * planned to get data from https://api.mfapi.in/mf,
+ * as discussed with Harsh, not using this class,
+ * just using mock data
+ *
+ * */
 class HttpServiceImpl implements HttpService {
   late Dio _dio;
   late Dio _dio_nobase;
 
   @override
   Future<void> init() async {
+    //lock is the sync mtd
     var lockInit = lockSync.Lock();
 
     await lockInit.synchronized(() async {
-      var headers = {'DeviceType': 'PWA'};
+      Map<String, String> headers = {};
 
       if (App.accessToken!.isNotEmpty) {
-        headers['Authorization'] = 'Bearer ' + App.accessToken;
+        headers['Authorization'] = 'Bearer ${App.accessToken}';
       }
 
       headers['X-Platform'] = "";
@@ -40,9 +46,9 @@ class HttpServiceImpl implements HttpService {
           baseUrl: App.BASE_URL,
           headers: headers,
           receiveDataWhenStatusError: true,
-          connectTimeout: 40 * 1000,
-          // 40 seconds
-          receiveTimeout: 40 * 1000 // 40 seconds
+          connectTimeout: 30 * 1000,
+          // 30seconds
+          receiveTimeout: 30 * 1000 // 30 seconds
           ));
 
       initializeInterceptors(_dio);
@@ -50,21 +56,10 @@ class HttpServiceImpl implements HttpService {
     return;
   }
 
-  // final queue = Queue();
-  // var lockRefresh = lockSync.Lock();
-
-  // late HttpService App.httpService;
-
-  //  dio instance to request token
-  // var tokenDio = Dio();
-
-  // HttpService(){
-  //   _dio = Dio();
-  //   // init();
-  // }
-
   @override
   Future<Response> getRequest(String url, {bool needWait = false}) async {
+    //Queue to make sure run the task in an order, facing performance issue while running parallel,
+    // we can control the LLel action using queue ,parallel: 1 params
     final queueGetReq =
         Queue(delay: const Duration(milliseconds: 300), parallel: 1);
 
@@ -245,7 +240,7 @@ class HttpServiceImpl implements HttpService {
 
             var options = err.response!.requestOptions;
             options.headers['access-token'] = accessToken;
-            options.headers['Authorization'] = 'Bearer ' + accessToken;
+            options.headers['Authorization'] = 'Bearer $accessToken';
 
             _dio.fetch(options).then(
               // (r) => handler.resolve(r),

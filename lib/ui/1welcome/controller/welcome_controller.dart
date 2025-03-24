@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../app/routes/app_pages.dart';
+import '../../../app/utils_res/string_helper.dart';
 
 class WelcomeController extends GetxController {
   var logoOpacity = 0.0.obs;
@@ -21,6 +22,16 @@ class WelcomeController extends GetxController {
   }
 
   void navigateToHome() {
-    Get.offAllNamed(AppRoutes.screenLogin);
+    StringHelper.getLoggedIn().then((value) {
+      if (value != null) {
+        if (value == "true") {
+          Get.offAllNamed(AppRoutes.screenHome);
+        } else {
+          Get.offAllNamed(AppRoutes.screenLogin);
+        }
+      } else {
+        Get.offAllNamed(AppRoutes.screenLogin);
+      }
+    });
   }
 }

@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 
 import '../../utils_res/color_helper.dart';
 
+
+/**
+ * common bg for overall app, (reusing)
+ * */
 class MainBackground extends StatelessWidget {
   const MainBackground(
       {Key? key, required this.child, this.back = true, this.title = ""})

@@ -124,9 +124,8 @@ class _MyAppState extends State<MySaarathiApp> with WidgetsBindingObserver {
               getPages: AppPages.pages,
               // navigatorObservers: [MyRouteObserver()],
               home: WelcomeScreen(),
-              //todo
+              //todo:testing
               // home: FundFullScreen(),
-
               theme: ThemeData(
                 dividerColor: Colors.transparent,
                 fontFamily: MyFontFamily.GILROY_SEMIBOLD,

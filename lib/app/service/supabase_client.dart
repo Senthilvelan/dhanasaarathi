@@ -1,5 +1,16 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
+/**
+ *
+ * Supabase is configured and got the url and key.
+ * Configured twillo for sms.
+ *
+ *
+ * whitelisted mobiles
+ * test with 9742839040, default OTP 123456
+ * test with 8100005474, default OTP 123456
+ * */
 class SupabaseMyClient {
   static Future<bool> sendOtpToMobile(String mobile) async {
     try {

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import 'color_helper.dart';
-import 'font_family.dart';
 
 class SnackBarHelper {
   static late Timer _timer;
@@ -78,11 +77,6 @@ class SnackBarHelper {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            "assets/n_emojis/ic_sad_emoji.png",
-            height: 24,
-            // width: 52,
-          ),
           const SizedBox(
             width: 8.0,
           ),
@@ -90,7 +84,6 @@ class SnackBarHelper {
             content,
             style: const TextStyle(
               fontSize: 14,
-              fontFamily: FontFamily.INTER_MEDIUM,
               fontWeight: FontWeight.w400,
               color: Color(0xffffffff),
             ),
@@ -104,7 +97,6 @@ class SnackBarHelper {
     return Get.snackbar(
       "",
       '',
-      // icon: Image.asset('assets/n_emojis/ic_sad_emoji.png'),
       messageText: toast,
       titleText: Container(),
       // colorText: textColorMain,
@@ -115,8 +107,7 @@ class SnackBarHelper {
       overlayColor: Colors.transparent,
       barBlur: 0,
       overlayBlur: 0,
-      // padding: const EdgeInsets.all(16),
-      // margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+
       isDismissible: true,
     );
   }
@@ -125,8 +116,6 @@ class SnackBarHelper {
       {String content = "Internet connection restored",
       Color? color,
       int secd = 4}) {
-    // ToastView.showNoInternet(NavigationService.navigatorKey.currentContext!);
-
     Widget toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 32.0),
@@ -137,11 +126,6 @@ class SnackBarHelper {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            "assets/n_emojis/ic_emoji_thumbsup.png",
-            height: 24,
-            // width: 52,
-          ),
           const SizedBox(
             width: 8.0,
           ),
@@ -149,7 +133,6 @@ class SnackBarHelper {
             content,
             style: const TextStyle(
               fontSize: 14,
-              fontFamily: FontFamily.INTER_MEDIUM,
               fontWeight: FontWeight.w400,
               color: Color(0xffffffff),
             ),
@@ -161,7 +144,6 @@ class SnackBarHelper {
     return Get.snackbar(
       "",
       '',
-      // icon: Image.asset('assets/n_emojis/ic_sad_emoji.png'),
       messageText: toast,
       titleText: Container(),
       // colorText: textColorMain,
@@ -179,22 +161,8 @@ class SnackBarHelper {
   }
 
   static showNewError(String content, {Color? color, int seconds = 3}) {
-/*    if (getInternetConnectionStatus() == false) {
-      content = "No Internet connection";
-    } else {
-      if (kDebugMode) {
-        if (content == "No Internet connection") {
-          content = "Url is not reachable";
-        }
-      } else {
-        content = "";
-      }
-    }*/
-
     if (isToastShowing.value = false) return;
     isToastShowing.value = false;
-
-    // ToastView.showNoInternet(NavigationService.navigatorKey.currentContext!);
 
     Widget toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
@@ -206,11 +174,6 @@ class SnackBarHelper {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            "assets/n_emojis/ic_sad_emoji.png",
-            height: 24,
-            // width: 52,
-          ),
           const SizedBox(
             width: 8.0,
           ),
@@ -218,7 +181,6 @@ class SnackBarHelper {
             content,
             style: const TextStyle(
               fontSize: 14,
-              fontFamily: FontFamily.INTER_MEDIUM,
               fontWeight: FontWeight.w400,
               color: Color(0xffffffff),
             ),
@@ -232,7 +194,6 @@ class SnackBarHelper {
     return Get.snackbar(
       "",
       '',
-      // icon: Image.asset('assets/n_emojis/ic_sad_emoji.png'),
       messageText: toast,
       titleText: Container(),
       // colorText: textColorMain,
