@@ -83,7 +83,9 @@ class WatchlistScreen extends StatelessWidget {
               );
             }
 
-            return Expanded(child: Obx(() => getListWatchListItems()));
+            // return Expanded(child: Obx(() => getListWatchListItems()));
+            return Expanded(child: getListWatchListItems());
+
           }),
         ],
       ),
