@@ -13,31 +13,31 @@ class AppPages {
     GetPage(
       name: AppRoutes.screenWelcome,
       page: () => WelcomeScreen(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenLogin,
       page: () => LoginScreen(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenOtp,
       page: () => OtpScreen(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenHome,
       page: () => HomeScreen(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 900),
     ),
     GetPage(
       name: AppRoutes.screenFullFund,
       page: () => FundFullScreen(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 900),
     ),
   ];

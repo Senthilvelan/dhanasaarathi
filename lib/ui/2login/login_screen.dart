@@ -46,14 +46,13 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 24),
+        const SizedBox(height: 32),
 
-        Obx(() => SizedBox(
+        Obx(() => Container(
               width: double.infinity,
+              margin: const EdgeInsets.fromLTRB(24, 4, 24, 4),
               child: ElevatedButton(
-                onPressed: controller.isDisabled.value
-                    ? controller.proceedToOtp
-                    : null,
+                onPressed: controller.proceedToOtp,
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       controller.isDisabled.value ? blueMarine : Colors.grey,
@@ -62,29 +61,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: Text("Proceed",
+                child: const Text("Proceed",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                     )),
               ),
             )),
-
-        // Proceed Button
-        // SizedBox(
-        //   width: double.infinity,
-        //   child: ElevatedButton(
-        //     onPressed: controller.proceedToOtp,
-        //     style: ElevatedButton.styleFrom(
-        //       backgroundColor: blueMarine,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(12),
-        //       ),
-        //       padding: const EdgeInsets.symmetric(vertical: 12),
-        //     ),
-        //     child: const Text("Proceed", style: TextStyle(fontSize: 16)),
-        //   ),
-        // ),
       ],
     );
   }
