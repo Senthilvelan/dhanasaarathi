@@ -6,4 +6,5 @@ abstract class AppRoutes {
 
   static const screenOtp = '/otpScreen';
 
+  static const screenHome = '/homeScreen';
 }

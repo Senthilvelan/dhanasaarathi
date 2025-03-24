@@ -12,7 +12,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginOtpBackground(child: getLoginContent());
+    return GetBuilder<LoginController>(builder: (logic) {
+      return LoginOtpBackground(child: getLoginContent());
+    });
   }
 
   Widget getLoginContent() {

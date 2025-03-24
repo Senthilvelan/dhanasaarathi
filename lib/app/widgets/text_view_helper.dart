@@ -1,5 +1,4 @@
 import 'package:dhansaarathi/app/font/my_font_family.dart';
-import 'package:dhansaarathi/app/utils_res/color_helper.dart';
 import 'package:flutter/material.dart';
 
 class TextViewHelper {
@@ -8,7 +7,7 @@ class TextViewHelper {
       fontWeight: FontWeight.w800,
       fontFamily: MyFontFamily.GILROY_SEMIBOLD,
       fontSize: 14,
-      color: white,
+      color: Colors.white,
     );
   }
 
@@ -19,5 +18,26 @@ class TextViewHelper {
       fontFamily: MyFontFamily.GILROY_SEMIBOLD,
       color: Colors.white,
     );
+  }
+
+  static getBoxDecor() {
+    return BoxDecoration(
+        color: Colors.grey.withOpacity(.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.grey.withOpacity(.5),
+          width: 0.5,
+        ));
+  }
+
+
+  static getBoxDecorTrans() {
+    return BoxDecoration(
+        color: Colors.grey.withOpacity(.01),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.grey.withOpacity(.01),
+          width: 0.5,
+        ));
   }
 }

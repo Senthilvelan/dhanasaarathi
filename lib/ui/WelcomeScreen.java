@@ -35,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 120,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        color:blueMarine,
                       ),
                     ),
                     Positioned(
@@ -43,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Icon(
                         Icons.arrow_upward,
                         size: 40,
-                        color: Colors.blue,
+                        color:blueMarine,
                       ),
                     ),
                   ],
@@ -81,7 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color:blueMarine,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(Icons.arrow_forward, color: Colors.white),

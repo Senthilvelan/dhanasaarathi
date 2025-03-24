@@ -1,8 +1,5 @@
 import 'dart:async';
 
-// import 'package:/app/utils/color_helper.dart';
-// import 'package:/app/utils/font_family.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -23,10 +20,10 @@ class SnackBarHelper {
       message: "$content",
       titleText: Text(msg),
       // color: White,
-      margin: EdgeInsets.all(1),
+      margin: const EdgeInsets.all(1),
       borderRadius: 0.0,
       duration: Duration(seconds: secd),
-      backgroundColor: color == null ? Red : color,
+      backgroundColor: color == null ? Colors.red : color,
       snackPosition: SnackPosition.BOTTOM,
       isDismissible: true,
     );
@@ -38,9 +35,9 @@ class SnackBarHelper {
       message: "$content",
       titleText: Text(msg),
       borderRadius: 0.0,
-      margin: EdgeInsets.all(1),
-      duration: Duration(seconds: 4),
-      backgroundColor: color == null ? bottomRightGradientColor : color,
+      margin: const EdgeInsets.all(1),
+      duration: const Duration(seconds: 4),
+      backgroundColor: color == null ? blueMarine : color,
       snackPosition: SnackPosition.BOTTOM,
       isDismissible: true,
     );
@@ -76,7 +73,7 @@ class SnackBarHelper {
       margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 32.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Color(0xff263545),
+        color: const Color(0xff263545),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -86,7 +83,7 @@ class SnackBarHelper {
             height: 24,
             // width: 52,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8.0,
           ),
           Text(
@@ -135,7 +132,7 @@ class SnackBarHelper {
       margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 32.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Color(0xff263545),
+        color: const Color(0xff263545),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -145,7 +142,7 @@ class SnackBarHelper {
             height: 24,
             // width: 52,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8.0,
           ),
           Text(
@@ -204,7 +201,7 @@ class SnackBarHelper {
       margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 32.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Color(0xff263545),
+        color: const Color(0xff263545),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -214,7 +211,7 @@ class SnackBarHelper {
             height: 24,
             // width: 52,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8.0,
           ),
           Text(

@@ -4,18 +4,24 @@ import 'package:get/get.dart';
 import '../../utils_res/color_helper.dart';
 
 class MainBackground extends StatelessWidget {
-  const MainBackground({Key? key, required this.child, this.back = true})
+  const MainBackground(
+      {Key? key, required this.child, this.back = true, this.title = ""})
       : super(key: key);
 
   final Widget child;
 
   final bool back;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryBlackColorFull,
       appBar: AppBar(
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.white, fontSize: 18),
+        ),
         backgroundColor: primaryBlackColorFull,
         elevation: 0,
         leading: back

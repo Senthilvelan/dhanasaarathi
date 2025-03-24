@@ -4,7 +4,6 @@ class CustomPageRoute<T> extends PageRoute<T> {
   CustomPageRoute(this.child);
 
   @override
-  // TODO: implement barrierColor
   Color get barrierColor => Colors.black;
 
   @override

@@ -8,10 +8,8 @@ class SupabaseMyClient {
 
       // AuthResponse response = await supabase.client.auth.verifyOTP(
       //     phone: "+919742839040", type: OtpType.sms, token: "123456");
-      //
       // if (response.user!.aud.toString().toLowerCase() == "authenticated") {}
 
-      // print(response);
       return true;
     } catch (e) {
       print("Error sending OTP: $e");

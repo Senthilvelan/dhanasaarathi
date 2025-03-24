@@ -16,7 +16,7 @@ import 'app/routes/app_pages.dart';
 import 'app/utils/my_const.dart';
 import 'app/utils/sizer.dart';
 import 'app/utils_res/color_helper.dart';
-import 'ui/1welcome/welcome_screen.dart';
+import 'ui/5fundfullscreen/fund_fullsceen.dart';
 
 void main() async {
   BindingBase.debugZoneErrorsAreFatal = true;
@@ -28,8 +28,6 @@ void main() async {
       await SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp]);
       App.prefs = await SharedPreferences.getInstance();
-
-      // await Supabase.initialize(url: 'SUPABASE_URL', anonKey: 'SUPABASE_ANON_KEY');
 
       // await Supabase.initialize(
       //   url: 'https://your-project.supabase.co',
@@ -120,13 +118,15 @@ class _MyAppState extends State<MySaarathiApp> with WidgetsBindingObserver {
               initialBinding: AppBinding(),
               initialRoute: AppRoutes.screenWelcome,
               navigatorKey: NavigationService.navigatorKey,
-              // defaultTransition: Transition.cupertino,
-              defaultTransition: Transition.fadeIn,
-
-              transitionDuration: const Duration(milliseconds: 330),
+              defaultTransition: Transition.cupertino,
+              // defaultTransition: Transition.fadeIn,
+              transitionDuration: const Duration(milliseconds: 900),
               getPages: AppPages.pages,
-              navigatorObservers: [MyRouteObserver()],
-              home: WelcomeScreen(),
+              // navigatorObservers: [MyRouteObserver()],
+              // home: WelcomeScreen(),
+              //todo
+              home: FundFullScreen(),
+
               theme: ThemeData(
                 dividerColor: Colors.transparent,
                 fontFamily: MyFontFamily.GILROY_SEMIBOLD,

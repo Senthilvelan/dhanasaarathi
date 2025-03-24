@@ -1,8 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
-library fitmint_flutter.globalsigleton;
-
-// import 'package:flutter_udid/flutter_udid.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,15 +19,12 @@ class App {
 
   static late SharedPreferences prefs;
 
-
-
-
-
   static String BASE_URL = "https://oracle.fitx.tech/api/";
 
   static dynamic ipData = {};
 
   static String accessToken = "";
+
   // static String accountUuid = "";
 
   static HttpService _httpService = HttpServiceImpl();
