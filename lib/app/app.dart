@@ -23,7 +23,7 @@ class App {
 
   static late SharedPreferences prefs;
 
-  static String BASE_URL = "https://oracle.fitx.tech/api/";
+  static String BASE_URL = "";
 
   static dynamic ipData = {};
 
