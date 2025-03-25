@@ -16,7 +16,7 @@ class LoginOtpBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return MainBackground(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,7 +39,7 @@ class LoginOtpBackground extends StatelessWidget {
         Text(
           "Welcome Back,\nWe Missed You! 🎉",
           style: TextStyle(
-            fontSize: 26,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -65,7 +65,7 @@ class LoginOtpBackground extends StatelessWidget {
           ],
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: 32),
       ],
     );
   }

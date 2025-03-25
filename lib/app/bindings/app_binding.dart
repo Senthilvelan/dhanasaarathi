@@ -11,11 +11,11 @@ class AppBinding implements Bindings {
   void dependencies() {
     //pre-login
     Get.lazyPut<WelcomeController>(() => WelcomeController());
-    Get.lazyPut<LoginController>(() => LoginController());
-    Get.lazyPut<OtpController>(() => OtpController());
-
-    //post login
-    Get.lazyPut<WatchlistController>(() => WatchlistController());
-    Get.lazyPut<FundFullscreenController>(() => FundFullscreenController());
+    // Get.lazyPut<LoginController>(() => LoginController());
+    // Get.lazyPut<OtpController>(() => OtpController());
+    //
+    // //post login
+    // Get.lazyPut<WatchlistController>(() => WatchlistController());
+    // Get.lazyPut<FundFullscreenController>(() => FundFullscreenController());
   }
 }

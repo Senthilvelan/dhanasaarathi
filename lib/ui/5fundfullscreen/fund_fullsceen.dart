@@ -78,25 +78,31 @@ class FundFullScreen extends StatelessWidget {
   Widget getLineChartWidget() {
     return Container(
       height: 400,
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+      alignment: Alignment.center,
       decoration: TextViewHelper.getBoxDecorTrans(),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.show_chart, color: blueMarine, size: 16),
-                  Text(" Your Investments  -19.75%",
-                      style: TextStyle(color: blueMarine, fontSize: 12)),
-                ],
-              ),
-              const Row(
-                children: [
-                  Icon(Icons.show_chart, color: orangeMine, size: 16),
-                  Text(" Nifty Midcap 150  -12.97%",
-                      style: TextStyle(color: orangeMine, fontSize: 12)),
+                  Row(
+                    children: [
+                      Icon(Icons.show_chart, color: blueMarine, size: 16),
+                      Text(" Your Investments  -19.75%",
+                          style: TextStyle(color: blueMarine, fontSize: 10)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.show_chart, color: orangeMine, size: 16),
+                      Text(" Nifty Midcap 150  -12.97%",
+                          style: TextStyle(color: orangeMine, fontSize: 10)),
+                    ],
+                  ),
                 ],
               ),
               ElevatedButton(
@@ -113,7 +119,7 @@ class FundFullScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Expanded(
             child: Obx(
               () => LineChart(

@@ -17,6 +17,7 @@ class WelcomeScreen extends StatelessWidget {
       assignId: true,
       builder: (logic) {
         return MainBackground(
+          back: false,
           child: Stack(
             children: [
               Column(
@@ -58,8 +59,9 @@ class WelcomeScreen extends StatelessWidget {
 
                   // Button with Fade-in Animation
                   InkWell(
-                    onTap: controller.navigateToHome,
-
+                    onTap: logic.navigateToHome,
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
                       child: Row(
@@ -137,7 +139,6 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          back: false,
         );
       },
     );

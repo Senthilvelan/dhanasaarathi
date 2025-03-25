@@ -111,7 +111,7 @@ class WatchlistScreen extends StatelessWidget {
       children: [
         // Search Box
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
           child: TextField(
             controller: controller.searchController,
             onChanged: (value) => controller.filterWatchlist(value),
@@ -133,7 +133,7 @@ class WatchlistScreen extends StatelessWidget {
         // Watchlist Items
         Expanded(
             child: Obx(() => ListView.builder(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                   itemCount: controller.watchlist.length,
                   itemBuilder: (context, index) {
                     final item = controller.watchlist[index];
@@ -162,7 +162,7 @@ class WatchlistScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -176,7 +176,7 @@ class WatchlistScreen extends StatelessWidget {
                                         item.title,
                                         style: const TextStyle(
                                             color: Colors.white,
-                                            fontSize: 16,
+                                            fontSize: 13,
                                             fontWeight: FontWeight.bold),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -184,7 +184,7 @@ class WatchlistScreen extends StatelessWidget {
                                     Text(
                                       "NAV ${item.nav}",
                                       style: const TextStyle(
-                                          color: Colors.white70, fontSize: 14),
+                                          color: Colors.white70, fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -199,13 +199,13 @@ class WatchlistScreen extends StatelessWidget {
                                     Text(
                                       item.category,
                                       style: const TextStyle(
-                                          color: Colors.white54, fontSize: 12),
+                                          color: Colors.white54, fontSize: 11),
                                     ),
                                     Text(
                                       "1D ${item.oneDay}",
                                       style: const TextStyle(
                                           color: Colors.greenAccent,
-                                          fontSize: 14),
+                                          fontSize: 13),
                                     ),
                                   ],
                                 ),
@@ -220,19 +220,19 @@ class WatchlistScreen extends StatelessWidget {
                                     Text("1Y ${item.oneYear}",
                                         style: const TextStyle(
                                             color: Colors.greenAccent,
-                                            fontSize: 12)),
+                                            fontSize: 11)),
                                     Text("3Y ${item.threeYear}",
                                         style: const TextStyle(
                                             color: Colors.greenAccent,
-                                            fontSize: 12)),
+                                            fontSize: 11)),
                                     Text("5Y ${item.fiveYear}",
                                         style: const TextStyle(
                                             color: Colors.greenAccent,
-                                            fontSize: 12)),
+                                            fontSize: 11)),
                                     Text(
                                       "Exp. Ratio ${item.expenseRatio}",
                                       style: const TextStyle(
-                                          color: Colors.white54, fontSize: 12),
+                                          color: Colors.white54, fontSize: 11),
                                     ),
                                   ],
                                 ),
@@ -254,7 +254,7 @@ class WatchlistScreen extends StatelessWidget {
 
     Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
         decoration: const BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -297,7 +297,7 @@ class WatchlistScreen extends StatelessWidget {
 
     Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
         decoration: const BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

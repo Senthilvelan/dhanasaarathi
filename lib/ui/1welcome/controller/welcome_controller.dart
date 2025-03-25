@@ -4,8 +4,9 @@ import '../../../app/routes/app_pages.dart';
 import '../../../app/utils_res/string_helper.dart';
 
 class WelcomeController extends GetxController {
-  var logoOpacity = 0.0.obs;
-  var buttonOpacity = 0.0.obs;
+  RxDouble logoOpacity = 0.0.obs;
+
+  // var buttonOpacity = 0.0.obs;
 
   @override
   void onInit() {
@@ -14,14 +15,14 @@ class WelcomeController extends GetxController {
   }
 
   void animateLogo() async {
-    await Future.delayed(const Duration(milliseconds: 3000));
+    await Future.delayed(const Duration(milliseconds: 900));
     logoOpacity.value = 1.0;
 
-    await Future.delayed(const Duration(milliseconds: 900));
-    buttonOpacity.value = 1.0;
+    // await Future.delayed(const Duration(milliseconds: 900));
+    // buttonOpacity.value = 1.0;
   }
 
-  void navigateToHome() {
+  void navigateToHome() async {
     StringHelper.getLoggedIn().then((value) {
       if (value != null) {
         if (value == "true") {

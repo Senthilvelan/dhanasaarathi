@@ -31,7 +31,7 @@ class OtpScreen extends StatelessWidget {
             'Enter OTP',
             style: TextStyle(
                 color: Colors.white70,
-                fontSize: 22,
+                fontSize: 14,
                 fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 16),
