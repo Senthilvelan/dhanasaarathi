@@ -17,11 +17,9 @@ class FundFullScreen extends StatelessWidget {
     return MainBackground(
       back: true,
       title: controller.title,
-      child: Expanded(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: getFundFullScreenContent(),
-        ),
+      child:SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: getFundFullScreenContent(),
       ),
     );
   }

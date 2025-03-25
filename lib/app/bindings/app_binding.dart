@@ -16,6 +16,6 @@ class AppBinding implements Bindings {
     //
     // //post login
     // Get.lazyPut<WatchlistController>(() => WatchlistController());
-    // Get.lazyPut<FundFullscreenController>(() => FundFullscreenController());
+    Get.lazyPut<FundFullscreenController>(() => FundFullscreenController());
   }
 }
