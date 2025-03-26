@@ -147,7 +147,7 @@ class FundFullScreen extends StatelessWidget {
                           if (value.toInt() < labels.length) {
                             return Text(labels[value.toInt()],
                                 style: const TextStyle(
-                                    color: Colors.white54, fontSize: 10));
+                                    color: greyTextClrDove, fontSize: 10));
                           }
                           return Container();
                         },
@@ -254,7 +254,7 @@ class FundFullScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "₹ $amount",
+              "₹${controller.convertToLakh(controller.pastReturnAmount.value)}",
               style: const TextStyle(
                 color: greenApple,
                 fontSize: 18,
@@ -290,27 +290,37 @@ class FundFullScreen extends StatelessWidget {
   Widget actionButtons() {
     return Row(
       children: [
-        Expanded(
-            child: ElevatedButton(
-                onPressed: () {
-                  Utilities.showToast(
-                      "DhanSaarathi", "Sell under construction");
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: red.withOpacity(.9)),
-                child: const Text("Sell",
-                    style: TextStyle(color: greyTextClrDove)))),
-        const SizedBox(width: 10),
-        Expanded(
-            child: ElevatedButton(
-                onPressed: () {
-                  Utilities.showToast(
-                      "DhanSaarathi", "Invest under construction");
-                },
-                style: ElevatedButton.styleFrom(backgroundColor: blueMarine),
-                child: const Text("Invest More",
-                    style: TextStyle(color: greyTextClrDove)))),
+        Expanded(child: buttonCustom("Sell", Icons.arrow_downward_sharp)),
+        const SizedBox(width: 16),
+        Expanded(child: buttonCustom("Invest More", Icons.arrow_upward_sharp)),
       ],
+    );
+  }
+
+  ElevatedButton buttonCustom(String title, IconData iconData) {
+    return ElevatedButton(
+      onPressed: () {
+        Utilities.showToast("DhanSaarathi", "Sell under construction");
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: blueMarine.withOpacity(.9),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12), // Rounded corners
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(color: greyTextClrDove, fontSize: 14),
+          ),
+          const SizedBox(width: 4),
+          Icon(iconData, color: greyTextClrDove, size: 20),
+        ],
+      ),
     );
   }
 
@@ -467,17 +477,18 @@ class FundFullScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("₹ 1 L", style: TextStyle(color: Colors.white54)),
+                  const Text("₹ 1 L", style: TextStyle(color: greyTextClrDove)),
                   Text("₹${logic.investedAmount.value.toStringAsFixed(0)}",
                       style: const TextStyle(color: greyTextClr, fontSize: 10)),
-                  const Text("₹ 10 L", style: TextStyle(color: Colors.white54)),
+                  const Text("₹ 10 L",
+                      style: TextStyle(color: greyTextClrDove)),
                 ],
               ),
               const SizedBox(height: 24),
               fundPastReturnsWidget(),
               const SizedBox(height: 24),
-              // buildBarChart(),
-              getBarChartWidget(),
+              buildBarChart(),
+              // getBarChartWidget(),
             ],
           ),
         ));
@@ -547,12 +558,99 @@ class FundFullScreen extends StatelessWidget {
     return Obx(() => Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            buildBar("Saving A/C", controller.calculateReturns(1.19)),
-            buildBar("Category Avg.", controller.calculateReturns(3.63)),
-            buildBar("Direct Plan", controller.calculateReturns(4.55)),
+            bar_rise("Saving A/C", controller.calculateReturns(1.19),
+                controller.calculateProfit(1.19),
+                baseHeight: 7.3),
+            bar_rise("Category Avg.", controller.calculateReturns(3.63),
+                controller.calculateProfit(3.63),
+                baseHeight: 4.7),
+            bar_rise("Direct Plan", controller.calculateReturns(4.55),
+                controller.calculateProfit(4.55),
+                baseHeight: 5),
+            // buildBar("Saving A/C", controller.calculateReturns(1.19)),
+            // buildBar("Category Avg.", controller.calculateReturns(3.63)),
+            // buildBar("Direct Plan", controller.calculateReturns(4.55)),
           ],
         ));
   }
+
+  Widget bar_rise(String lbl, double total, double profit,
+      {double baseHeight = 2}) {
+    double investmentHeight =
+        baseHeight * (controller.investedAmount.value / 100000);
+    double profitHeight = (profit * baseHeight);
+    profitHeight = profitHeight + investmentHeight;
+
+    // investmentHeight = 40;
+    // profitHeight = 40;
+
+    return Column(
+      children: [
+        SizedBox(
+          height: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                "₹${controller.convertToLakh(total)}L",
+                style: const TextStyle(color: greyTextClrDove),
+              ),
+              const SizedBox(height: 8),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  AnimatedContainer(
+                    duration:
+                        Duration(milliseconds: ((130) * baseHeight).toInt()),
+                    width: 43,
+                    // height: controller.height.value  ,
+                    height: profitHeight,
+                    decoration: BoxDecoration(
+                      color: greenApple.withOpacity(.9),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    width: 42.5,
+                    // height: controller.height.value - 20,
+                    height: investmentHeight,
+                    decoration: BoxDecoration(
+                      color: greyBorder.withOpacity(.7),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 1,
+          width: 100,
+          color: greyTextClr,
+          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          lbl,
+          style: const TextStyle(color: Colors.white54),
+        ),
+      ],
+    );
+  }
+
+  Container getVerLine({double h = 23}) {
+    return Container(
+      height: h,
+      width: 1,
+      color: greyBorder,
+    );
+  }
+
+/* tried
 
   Widget buildBar(String label, double value) {
     return Column(
@@ -560,7 +658,7 @@ class FundFullScreen extends StatelessWidget {
         Text(
           "₹ ${value.toStringAsFixed(2)}L",
           style:
-              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         Container(
           width: 40,
@@ -569,7 +667,7 @@ class FundFullScreen extends StatelessWidget {
         ),
         Text(
           label,
-          style: const TextStyle(color: Colors.white54),
+          style: const TextStyle(color: greyTextClrDove),
         ),
       ],
     );
@@ -587,11 +685,11 @@ class FundFullScreen extends StatelessWidget {
               borderData: FlBorderData(show: false),
               titlesData: FlTitlesData(
                 leftTitles:
-                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 topTitles:
-                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 rightTitles:
-                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 bottomTitles: AxisTitles(
                   sideTitles: SideTitles(
                     showTitles: true,
@@ -656,13 +754,5 @@ class FundFullScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Container getVerLine({double h = 23}) {
-    return Container(
-      height: h,
-      width: 1,
-      color: greyBorder,
-    );
-  }
+  } */
 }

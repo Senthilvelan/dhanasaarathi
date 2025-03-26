@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class FundFullscreenController extends GetxController {
   TextEditingController textEditingController = TextEditingController();
@@ -29,6 +28,10 @@ class FundFullscreenController extends GetxController {
   final List<double> barValues = [1.19, 3.63, 4.55];
 
   RxInt selectedToggleIndex = 0.obs;
+
+  RxDouble pastReturnAmount = 3.60.obs;
+
+  RxDouble height = 50.0.obs;
 
   @override
   void onInit() {
@@ -83,6 +86,8 @@ class FundFullscreenController extends GetxController {
     currentValue.value = amount * 1.28;
     totalGain.value = currentValue.value - investedAmount.value;
     textEditingController.text = "₹${convertToLakh(amount)}";
+
+    pastReturnAmount.value = amount * 3.553;
   }
 
   void updateChartData(String period) {
@@ -144,7 +149,11 @@ class FundFullscreenController extends GetxController {
   }
 
   double calculateReturns(double multiplier) {
-    return investedAmount.value * multiplier;
+    return (investedAmount.value / 100000) * multiplier;
+  }
+
+  double calculateProfit(double multiplier) {
+    return calculateReturns(multiplier) - (investedAmount.value / 100000);
   }
 
   void updateInvestment1(double value) {
