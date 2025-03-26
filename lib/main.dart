@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dhansaarathi/ui/1welcome/welcome_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,32 +17,27 @@ import 'app/routes/app_pages.dart';
 import 'app/utils/my_const.dart';
 import 'app/utils/sizer.dart';
 import 'app/utils_res/color_helper.dart';
-import 'ui/1welcome/welcome_screen.dart';
+import 'ui/5fundfullscreen/fund_fullsceen.dart';
 
 void main() async {
   BindingBase.debugZoneErrorsAreFatal = true;
 
   // Initialize everything inside the same zone
   runZonedGuarded(
-    () async {
+        () async {
       WidgetsFlutterBinding.ensureInitialized();
       await SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp]);
       App.prefs = await SharedPreferences.getInstance();
 
-      // await Supabase.initialize(
-      //   url: 'https://your-project.supabase.co',
-      //   anonKey: 'your-anon-key',
-      // );
-
       await Supabase.initialize(
-        url: StringSUPABASE_URL,
-        anonKey: StringSUPABASE_,
+        url: SUPABASE_URL,
+        anonKey: SUPABASE_ANON,
       );
 
       runApp(MySaarathiApp());
     },
-    (error, stack) {
+        (error, stack) {
       // Global error handler
       if (kDebugMode) {
         print('Uncaught error: $error');
@@ -157,6 +153,6 @@ class MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
 
 class NavigationService {
   static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState>();
   static String screenName = "";
 }
