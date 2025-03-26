@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class FundFullscreenController extends GetxController {
   TextEditingController textEditingController = TextEditingController();
@@ -26,6 +27,8 @@ class FundFullscreenController extends GetxController {
   RxList<String> label = ["2022", "2023", "2024", "2025"].obs; // Sample values
 
   final List<double> barValues = [1.19, 3.63, 4.55];
+
+  RxInt selectedToggleIndex = 0.obs;
 
   @override
   void onInit() {
@@ -146,5 +149,10 @@ class FundFullscreenController extends GetxController {
 
   void updateInvestment1(double value) {
     investedAmount.value = value;
+  }
+
+  void onTapToggles(int i) {
+    selectedToggleIndex.value = i;
+    // Utilities.showToast("DhanSaarathi", "Toggle under contruction");
   }
 }

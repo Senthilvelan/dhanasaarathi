@@ -400,7 +400,7 @@ class FundFullScreen extends StatelessWidget {
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text("If you invested ",
                       style: TextStyle(color: greyTextClrDove, fontSize: 16)),
@@ -444,9 +444,16 @@ class FundFullScreen extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
-                  )
+                  ),
+                  //  toggle
+                  const Spacer(),
+                  Container(
+                      width: 170,
+                      alignment: Alignment.centerRight,
+                      child: toggleButton(logic)),
                 ],
               ),
+
               const SizedBox(height: 16),
               Slider(
                 value: logic.investedAmount.value,
@@ -474,6 +481,66 @@ class FundFullScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  Widget toggleButton(FundFullscreenController logic) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: greyBorder),
+        // Border similar to the image
+        borderRadius: BorderRadius.circular(12), // Rounded corners
+      ),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+        child: Obx(() {
+          return Row(
+            children: [
+              toggleOption(
+                title: "1-Time",
+                isSelected: logic.selectedToggleIndex.value == 0,
+                onTap: () {
+                  logic.onTapToggles(0);
+                },
+              ),
+              toggleOption(
+                title: "Monthly SIP",
+                isSelected: logic.selectedToggleIndex.value == 1,
+                onTap: () {
+                  logic.onTapToggles(1);
+                },
+              ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+
+  Widget toggleOption(
+      {required String title,
+      required bool isSelected,
+      required VoidCallback onTap}) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          decoration: BoxDecoration(
+            color: isSelected ? blueMarine : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            style: TextStyle(
+              color: isSelected ? greyTextClrDove : greyBorder,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget buildBarChart() {
