@@ -38,7 +38,7 @@ class FundFullScreen extends StatelessWidget {
           const SizedBox(height: 16),
           navOneDayCont(),
           const SizedBox(height: 16),
-          investmentInfo(),
+          investmentInfo(logic),
           const SizedBox(height: 16),
           getLineChartWidget(),
           const SizedBox(height: 24),
@@ -59,7 +59,7 @@ class FundFullScreen extends StatelessWidget {
     );
   }
 
-  Widget investmentInfo() {
+  Widget investmentInfo(FundFullscreenController controller) {
     return Obx(() => Container(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
           decoration: TextViewHelper.getBoxDecor(),

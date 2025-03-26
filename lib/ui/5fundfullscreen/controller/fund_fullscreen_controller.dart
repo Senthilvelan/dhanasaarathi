@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 class FundFullscreenController extends GetxController {
   TextEditingController textEditingController = TextEditingController();
+  FocusNode focusNode = FocusNode();
 
   final String title = Get.arguments ?? 'Mothilal Growth';
 
@@ -31,20 +32,33 @@ class FundFullscreenController extends GetxController {
     updateChartData("MAX");
     textEditingController.text = "₹1L";
 
+    focusNode.addListener(() {
+      if (textEditingController == null) return;
+      if (textEditingController.text == null) return;
+      String txtvalue = textEditingController.text;
+      txtvalue = txtvalue.trim();
+
+      if (focusNode.hasFocus) {
+        if (txtvalue.contains("₹")) {
+          txtvalue.replaceAll("₹", "");
+          txtvalue = txtvalue.replaceAll(RegExp(r'[^0-9.]'), '');
+        }
+      } else {
+        if (!txtvalue.contains("₹")) {
+          textEditingController.text = "₹" + txtvalue;
+        }
+      }
+    });
+
     textEditingController.addListener(() {
       if (textEditingController == null) return;
       if (textEditingController.text == null) return;
       String txtvalue = textEditingController.text;
-
-      if (txtvalue.trim().length == null) return;
       txtvalue = txtvalue.trim();
 
-      if (txtvalue.contains("₹")) {
-        txtvalue.replaceAll("₹", "");
-      }
-      txtvalue = txtvalue.replaceAll(RegExp(r'[^0-9.]'), '');
+      if (txtvalue.length == null) return;
 
-      if (txtvalue.length <= 5) {
+      if (txtvalue.length <= 7) {
         try {
           double? value = double.tryParse(txtvalue);
           if (value == null || value < 1.00 || value > 10.00) {
