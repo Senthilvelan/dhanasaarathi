@@ -1,16 +1,23 @@
 import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FundFullscreenController extends GetxController {
+  TextEditingController textEditingController = TextEditingController();
+
   final String title = Get.arguments ?? 'Mothilal Growth';
 
   var selectedPeriod = "MAX".obs;
 
   var investmentSpots = <FlSpot>[].obs;
   var niftySpots = <FlSpot>[].obs;
-  RxDouble investedAmount = 1000.0.obs;
+  RxDouble navAmount = 104.2.obs;
+  RxDouble nav1dayAmount = 4.7.obs;
+
+  RxDouble investedAmount = 100000.0.obs;
   RxDouble currentValue = 1280.0.obs;
   RxDouble totalGain = 220.16.obs;
   RxList<double> investmentGrowth = [-10.75, -12.97].obs;
@@ -22,13 +29,43 @@ class FundFullscreenController extends GetxController {
   @override
   void onInit() {
     updateChartData("MAX");
+    textEditingController.text = "₹1L";
+
+    textEditingController.addListener(() {
+      if (textEditingController == null) return;
+      if (textEditingController.text == null) return;
+      String txtvalue = textEditingController.text;
+
+      if (txtvalue.trim().length == null) return;
+      txtvalue = txtvalue.trim();
+
+      if (txtvalue.contains("₹")) {
+        txtvalue.replaceAll("₹", "");
+      }
+      txtvalue = txtvalue.replaceAll(RegExp(r'[^0-9.]'), '');
+
+      if (txtvalue.length <= 5) {
+        try {
+          double? value = double.tryParse(txtvalue);
+          if (value == null || value < 1.00 || value > 10.00) {
+          } else {
+            updateInvestment(value * 100000);
+          }
+        } catch (e) {
+          if (kDebugMode) print(e);
+        }
+      }
+    });
+
     super.onInit();
   }
 
   void updateInvestment(double amount) {
+    // amount = amount * 100000;
     investedAmount.value = amount;
     currentValue.value = amount * 1.28;
     totalGain.value = currentValue.value - investedAmount.value;
+    textEditingController.text = "₹${convertToLakh(amount)}";
   }
 
   void updateChartData(String period) {
@@ -72,5 +109,28 @@ class FundFullscreenController extends GetxController {
       spots.add(FlSpot(i.toDouble(), value));
     }
     return spots;
+  }
+
+  String convertToLakh(double amount) {
+    if (amount >= 100000) {
+      double lakhValue = amount / 100000;
+      return lakhValue.toStringAsFixed(2).endsWith(".00")
+          ? "${lakhValue.toStringAsFixed(0)}L"
+          : "${lakhValue.toStringAsFixed(2)}L";
+    } else if (amount >= 1000 && amount < 100000) {
+      double value = amount / 1000;
+      return value.toStringAsFixed(2).endsWith(".00")
+          ? "${value.toStringAsFixed(0)}k"
+          : "${value.toStringAsFixed(2)}k";
+    }
+    return "${amount.toStringAsFixed(2)}";
+  }
+
+  double calculateReturns(double multiplier) {
+    return investedAmount.value * multiplier;
+  }
+
+  void updateInvestment1(double value) {
+    investedAmount.value = value;
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../utils_res/color_helper.dart';
 
-
 /**
  * common bg for overall app, (reusing)
  * */
@@ -24,13 +23,13 @@ class MainBackground extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(color: greyTextClrDove, fontSize: 18),
         ),
         backgroundColor: primaryBlackColorFull,
         elevation: 0,
         leading: back
             ? IconButton(
-                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                icon: const Icon(Icons.arrow_back, color: blueMarine),
                 onPressed: () => Get.back(),
               )
             : Container(),

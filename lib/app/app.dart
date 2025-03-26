@@ -19,17 +19,14 @@ class App {
 
   static RxBool internetNotAvail = false.obs;
 
-  static String onboarding_variant = "";
 
   static late SharedPreferences prefs;
 
   static String BASE_URL = "";
 
-  static dynamic ipData = {};
 
   static String accessToken = "";
 
-  // static String accountUuid = "";
 
   static HttpService _httpService = HttpServiceImpl();
 
@@ -37,12 +34,6 @@ class App {
 
   static String currentVersion = "";
 
-  //workout variables
-  static RxList friendsList = [].obs;
-
-  static RxList activityNotificationList = [].obs;
-
-  static String loginMtd = "email";
 
   static Future<void> httpServiceInit() async {
     App._httpService = HttpServiceImpl();

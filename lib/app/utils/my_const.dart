@@ -1,2 +1,2 @@
-const StringSUPABASE_URL = "https://dctnyhtlfgfhjjotnges.supabase.co";
-const StringSUPABASE_ = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjdG55aHRsZmdmaGpqb3RuZ2VzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjY3ODQsImV4cCI6MjA1ODQwMjc4NH0.HqcrGlkedT-N__ypjPJSsHvK9HG3nHhFhfOqF2ZzONg";
+const String SUPABASE_URL = "https://dctnyhtlfgfhjjotnges.supabase.co";
+const String SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjdG55aHRsZmdmaGpqb3RuZ2VzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjY3ODQsImV4cCI6MjA1ODQwMjc4NH0.HqcrGlkedT-N__ypjPJSsHvK9HG3nHhFhfOqF2ZzONg";

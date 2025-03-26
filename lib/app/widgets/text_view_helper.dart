@@ -1,6 +1,8 @@
 import 'package:dhansaarathi/app/font/my_font_family.dart';
 import 'package:flutter/material.dart';
 
+import '../utils_res/color_helper.dart';
+
 class TextViewHelper {
   static styleHelper() {
     const TextStyle(
@@ -20,16 +22,15 @@ class TextViewHelper {
     );
   }
 
-  static getBoxDecor() {
+  static getBoxDecor({double opacity = .07}) {
     return BoxDecoration(
-        color: Colors.grey.withOpacity(.1),
+        color: Colors.grey.withOpacity(opacity),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.grey.withOpacity(.5),
+          color: greyBorder,
           width: 0.5,
         ));
   }
-
 
   static getBoxDecorTrans() {
     return BoxDecoration(

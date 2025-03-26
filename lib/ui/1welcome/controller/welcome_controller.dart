@@ -4,7 +4,7 @@ import '../../../app/routes/app_pages.dart';
 import '../../../app/utils_res/string_helper.dart';
 
 class WelcomeController extends GetxController {
-  RxDouble logoOpacity = 0.0.obs;
+  RxDouble logoOpacity = 0.3.obs;
 
   // var buttonOpacity = 0.0.obs;
 
