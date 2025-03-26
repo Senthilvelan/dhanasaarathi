@@ -249,16 +249,16 @@ class FundFullScreen extends StatelessWidget {
               "This Fund’s past returns",
               style: TextStyle(
                 color: greyTextClrDove,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
             ),
             Text(
               "₹${controller.convertToLakh(controller.pastReturnAmount.value)}",
               style: const TextStyle(
                 color: greenApple,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
@@ -271,14 +271,14 @@ class FundFullScreen extends StatelessWidget {
               "Profit % (Absolute Return)",
               style: TextStyle(
                 color: greyTextClr,
-                fontSize: 14,
+                fontSize: 12,
               ),
             ),
             Text(
               "$percent%",
               style: const TextStyle(
                 color: greyClrDove,
-                fontSize: 14,
+                fontSize: 12,
               ),
             ),
           ],
@@ -386,16 +386,16 @@ class FundFullScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(title, style: const TextStyle(color: greyTextClr, fontSize: 12)),
+        Text(title, style: const TextStyle(color: greyTextClr, fontSize: 11)),
         const SizedBox(height: 4),
         Row(
           children: [
             Text(value,
                 style: const TextStyle(
                     color: greyTextClrDove,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold)),
-            if (isNegative) getTextLoss(data: "14.7", fsize: 15),
+            if (isNegative) getTextLoss(data: "14.7", fsize: 11),
           ],
         ),
       ],
@@ -413,12 +413,12 @@ class FundFullScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text("If you invested ",
-                      style: TextStyle(color: greyTextClrDove, fontSize: 16)),
+                      style: TextStyle(color: greyTextClrDove, fontSize: 14)),
                   // Text("₹${controller.investedAmount.value.toStringAsFixed(0)}",
                   //     style: const TextStyle(color: greyTextClrDove)),
                   SizedBox(
-                    width: 123,
-                    // height: 30,
+                    width: 103,
+                    height: 30,
                     child: TextField(
                       textAlign: TextAlign.end,
                       controller: logic.textEditingController,
@@ -427,17 +427,17 @@ class FundFullScreen extends StatelessWidget {
                       decoration: const InputDecoration(
                         suffixIcon: Icon(
                           Icons.edit_outlined,
-                          color: greyClrDove,
-                          size: 17,
+                          color: greyTextClr,
+                          size: 16,
                         ),
                         border: UnderlineInputBorder(
                             borderSide: BorderSide(
-                          color: greyClrDove,
+                          color: greyTextClr,
                           width: .5,
                         )),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: greyClrDove,
+                            color: greyTextClr,
                             width: .5,
                           ),
                         ),
@@ -451,19 +451,31 @@ class FundFullScreen extends StatelessWidget {
                       ),
                       style: const TextStyle(
                           color: greyTextClrDove,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   //  toggle
                   const Spacer(),
-                  Container(
-                      width: 170,
-                      alignment: Alignment.centerRight,
-                      child: toggleButton(logic)),
+                  if (false)
+                    Container(
+                        width: 170,
+                        alignment: Alignment.centerRight,
+                        child: toggleButton(logic)),
                 ],
               ),
+              const SizedBox(height: 16),
 
+              Row(
+                children: [
+                  Spacer(),
+                  Container(
+                    child: toggleButton(logic),
+                    alignment: Alignment.centerLeft,
+                    width: Get.width / 2,
+                  ),
+                ],
+              ),
               const SizedBox(height: 16),
               Slider(
                 value: logic.investedAmount.value,
@@ -535,17 +547,18 @@ class FundFullScreen extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 4),
+          padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 4),
+          margin: const EdgeInsets.symmetric(vertical: 4,horizontal: 4),
           decoration: BoxDecoration(
             color: isSelected ? blueMarine : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
           ),
           alignment: Alignment.center,
           child: Text(
             title,
             style: TextStyle(
               color: isSelected ? greyTextClrDove : greyBorder,
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -593,7 +606,7 @@ class FundFullScreen extends StatelessWidget {
             children: [
               Text(
                 "₹${controller.convertToLakh(total)}L",
-                style: const TextStyle(color: greyTextClrDove),
+                style: const TextStyle(color: greyTextClrDove, fontSize: 12),
               ),
               const SizedBox(height: 8),
               Stack(
@@ -627,7 +640,7 @@ class FundFullScreen extends StatelessWidget {
         ),
         Container(
           height: 1,
-          width: 100,
+          width: 93,
           color: greyTextClr,
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
         ),
@@ -636,7 +649,7 @@ class FundFullScreen extends StatelessWidget {
         ),
         Text(
           lbl,
-          style: const TextStyle(color: Colors.white54),
+          style: const TextStyle(color: Colors.white54, fontSize: 11),
         ),
       ],
     );
