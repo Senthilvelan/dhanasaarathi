@@ -22,6 +22,17 @@ class TextViewHelper {
     );
   }
 
+  static getBoxDecorTop({double opacity = .07}) {
+    return BoxDecoration(
+        color: Colors.yellow,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: greyBorder,
+          width: 0.5,
+        ));
+  }
+
+
   static getBoxDecor({double opacity = .07}) {
     return BoxDecoration(
         color: Colors.grey.withOpacity(opacity),

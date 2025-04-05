@@ -62,7 +62,7 @@ class FundFullScreen extends StatelessWidget {
   Widget investmentInfo(FundFullscreenController controller) {
     return Obx(() => Container(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-          decoration: TextViewHelper.getBoxDecor(),
+          decoration: TextViewHelper.getBoxDecorTop(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -167,8 +167,11 @@ class FundFullScreen extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              blueMarineLite.withOpacity(.3),
-                              greyBorder.withOpacity(.3)
+                              // blueMarineLite.withOpacity(.3),
+                              // greyBorder.withOpacity(.3)
+
+                              red,
+                              red,
                             ],
                           )),
                       dotData: const FlDotData(show: false),
@@ -184,8 +187,11 @@ class FundFullScreen extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              orangeMineLite.withOpacity(.23),
-                              greyBorder.withOpacity(.3)
+                              // orangeMineLite.withOpacity(.23),
+                              // greyBorder.withOpacity(.3)
+
+                              Colors.green,
+                              Colors.green,
                             ],
                           )),
                       // shadow: const Shadow(color: red),
@@ -392,7 +398,7 @@ class FundFullScreen extends StatelessWidget {
           children: [
             Text(value,
                 style: const TextStyle(
-                    color: greyTextClrDove,
+                    color: blueMarine,
                     fontSize: 14,
                     fontWeight: FontWeight.bold)),
             if (isNegative) getTextLoss(data: "14.7", fsize: 11),

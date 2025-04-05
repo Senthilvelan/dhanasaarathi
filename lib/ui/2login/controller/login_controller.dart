@@ -16,7 +16,7 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    Future.delayed(const Duration(milliseconds: 3000), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       try {
         focusNode ??= FocusNode();
         focusNode.requestFocus();
@@ -81,7 +81,10 @@ class LoginController extends GetxController {
         Get.toNamed(AppRoutes.screenOtp,
             arguments: phoneController.text.trim());
       } else {
-        Utilities.showToast("Saarathi", "Failed to send OTP,try again !");
+        //todo: bypassed
+        Get.toNamed(AppRoutes.screenOtp,
+            arguments: phoneController.text.trim());
+        // Utilities.showToast("Saarathi", "Failed to send OTP,try again !");
       }
     } else {
       Get.snackbar("Invalid Number", "Please enter a valid 10-digit number",

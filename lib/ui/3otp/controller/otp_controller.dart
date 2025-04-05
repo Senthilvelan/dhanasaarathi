@@ -98,6 +98,10 @@ class OtpController extends GetxController {
       Get.snackbar('Error', e.toString());
     } finally {
       isLoading.value = false;
+      //todo: bypassed
+      Utilities.showToast('Success', 'Login successful');
+      await StringHelper.setLoggedIn("true");
+      Get.offAll(() => HomeScreen());
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:dhansaarathi/app/routes/app_pages.dart';
+import 'package:dhansaarathi/app/utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,7 +50,7 @@ class WatchlistController extends GetxController {
 
   void onFundTap(String title) {
     Future.delayed(const Duration(milliseconds: 300), () {
-      Get.toNamed(AppRoutes.screenFullFund,arguments:title);
+      Get.toNamed(AppRoutes.screenFullFund, arguments: title);
     });
   }
 
@@ -86,6 +87,19 @@ class WatchlistController extends GetxController {
   // Add a new watchlist tab
   void addWatchlist(String name) {
     if (name.isNotEmpty && !watchlists.contains(name)) {
+      if (watchlists.length >= 5) {
+        Get.back();
+        Future.delayed(const Duration(milliseconds: 300),(){
+          Get.snackbar("Saarathi Number", "Please enter a valid 10-digit number",
+              snackPosition: SnackPosition.TOP,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
+        });
+
+        // Utilities.showToast("Saarathi", "You can add max of 5 watchlists");
+        return;
+      }
+
       watchlists.add(name);
       items[name] = []; // Initialize list for new watchlist
       update();
@@ -98,6 +112,4 @@ class WatchlistController extends GetxController {
     items[currentList]?.add(item);
     update();
   }
-
-
 }
